@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create New Itinerary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/titleTextColor"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <EditText
+            android:id="@+id/countryInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country"
+            android:backgroundTint="@color/colorAccent"
+            android:textColorHint="@color/titleTextColor"
+            android:textColor="@color/titleTextColor"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/citiesInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cities (comma-separated)"
+            android:backgroundTint="@color/colorAccent"
+            android:textColorHint="@color/titleTextColor"
+            android:textColor="@color/titleTextColor"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/startDateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Start Date"
+            android:textColor="@color/buttonTextColor"
+            android:backgroundTint="@color/buttonBackground"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/endDateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select End Date"
+            android:textColor="@color/buttonTextColor"
+            android:backgroundTint="@color/buttonBackground"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/numberOfAdultsInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of Adults"
+            android:inputType="number"
+            android:backgroundTint="@color/colorAccent"
+            android:textColorHint="@color/titleTextColor"
+            android:textColor="@color/titleTextColor"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/numberOfChildrenInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of Children"
+            android:inputType="number"
+            android:backgroundTint="@color/colorAccent"
+            android:textColorHint="@color/titleTextColor"
+            android:textColor="@color/titleTextColor"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/userLocationInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Location"
+            android:backgroundTint="@color/colorAccent"
+            android:textColorHint="@color/titleTextColor"
+            android:textColor="@color/titleTextColor"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/submitTravelPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Itinerary"
+            android:backgroundTint="@color/buttonBackground"
+            android:textColor="@color/buttonTextColor"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView> 

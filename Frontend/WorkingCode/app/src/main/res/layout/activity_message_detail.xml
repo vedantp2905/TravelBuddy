@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <!-- LinearLayout inside ScrollView to hold all the content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title of the TravelSpace post -->
+        <TextView
+            android:id="@+id/postTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <!-- Description of the TravelSpace post -->
+        <TextView
+            android:id="@+id/postDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="16sp"
+            android:paddingBottom="16dp" />
+
+        <!-- RecyclerView for displaying replies -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/replyRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp" />
+
+        <!-- TextView to display the itinerary info -->
+        <TextView
+            android:id="@+id/itineraryInfoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Itinerary Info will appear here"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:visibility="gone" />
+
+        <!-- WebView for displaying HTML content -->
+        <WebView
+            android:id="@+id/postContentWebView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <!-- EditText for typing a reply -->
+        <EditText
+            android:id="@+id/replyEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type your reply"
+            android:padding="8dp" />
+
+        <!-- Button to post the reply -->
+        <Button
+            android:id="@+id/replyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reply"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/buttonBackground"
+            android:textColor="@color/buttonTextColor" />
+
+    </LinearLayout>
+
+</android.widget.ScrollView>

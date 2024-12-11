@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_color"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <!-- EditText to input user ID -->
+    <TextView
+        android:id="@+id/adminTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Admin Panel"
+        android:textAlignment="center"
+        android:textColor="@color/titleTextColor"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/user_id_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter User ID"
+        android:inputType="number"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/buttonBackground"/>
+
+    <!-- Button to update newsletter preferences -->
+    <Button
+        android:id="@+id/update_newsletter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Newsletter Preferences"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button to delete user -->
+    <Button
+        android:id="@+id/delete_user_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete User"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button to delete accounts (existing functionality) -->
+    <Button
+        android:id="@+id/btnDeleteAccounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Accounts"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"/>
+
+</LinearLayout>

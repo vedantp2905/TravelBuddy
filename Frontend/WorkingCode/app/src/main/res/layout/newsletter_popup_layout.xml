@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/rounded_dialog_background">
+
+    <ImageView
+        android:id="@+id/newsletter_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_newsletter"
+        android:tint="@color/buttonBackground"/>
+
+    <TextView
+        android:id="@+id/popup_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/popup_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/subscribe_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Yes, Keep Me Updated!"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/not_now_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Maybe Later"
+        android:backgroundTint="#EEEEEE"
+        android:textColor="#666666"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+</LinearLayout>

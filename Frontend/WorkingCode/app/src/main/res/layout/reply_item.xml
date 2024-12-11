@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/replyMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reply message"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/replyId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reply ID"
+        android:textSize="12sp"
+        android:visibility="gone"/>
+</LinearLayout>

@@ -1,0 +1,33 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Title TextView -->
+        <TextView
+            android:id="@+id/tvTravelSpacesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel Spaces"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:textColor="#333333"
+            android:gravity="center"/>
+
+        <!-- RecyclerView for displaying Travel Spaces -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/travelSpacesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <TextView
+        android:id="@+id/about_me_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About Me"
+        android:textSize="18sp"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/about_me_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tell us about yourself"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:gravity="top" />
+
+    <TextView
+        android:id="@+id/preferred_language_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preferred Language"
+        android:textSize="18sp"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/preferred_language_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter preferred language"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/currency_preference_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currency Preference"
+        android:textSize="18sp"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/currency_preference_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter preferred currency"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/passport_country_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passport Country"
+        android:textSize="18sp"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/passport_country_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter passport country"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/frequent_flyer_programs_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Frequent Flyer Programs"
+        android:textSize="18sp"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/frequent_flyer_programs_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter frequent flyer programs"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/dietary_restrictions_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dietary Restrictions"
+        android:textSize="18sp"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/dietary_restrictions_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter dietary restrictions"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"/>
+</LinearLayout>

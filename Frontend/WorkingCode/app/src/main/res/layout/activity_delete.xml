@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <EditText
+        android:id="@+id/travel_budget_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Travel Budget"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/travel_style_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Travel Style" />
+
+    <EditText
+        android:id="@+id/travel_experience_level_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Travel Experience Level" />
+
+    <EditText
+        android:id="@+id/max_trip_duration_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Max Trip Duration (days)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/preferred_destinations_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Preferred Destinations" />
+
+    <EditText
+        android:id="@+id/interests_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Interests" />
+
+    <EditText
+        android:id="@+id/preferred_airlines_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Preferred Airlines" />
+
+    <EditText
+        android:id="@+id/accommodation_type_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Accommodation Type" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Account"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor" />
+</LinearLayout>

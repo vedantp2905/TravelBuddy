@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile Picture *"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/profile_picture_imageview"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/profilepicture"
+            android:scaleType="centerCrop"/>
+
+        <Button
+            android:id="@+id/select_picture_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_picture_imageview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Select Profile Picture *"
+            android:backgroundTint="@color/buttonBackground"
+            android:textColor="@color/buttonTextColor"/>
+
+        <!-- Travel Budget Section -->
+        <TextView
+            android:id="@+id/travel_budget_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel Budget"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/travel_budget_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your travel budget"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Travel Style Section -->
+        <TextView
+            android:id="@+id/travel_style_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel Style"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/travel_style_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Describe your travel style"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Travel Experience Level Section -->
+        <TextView
+            android:id="@+id/travel_experience_level_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel Experience Level"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/travel_experience_level_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your experience level"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Maximum Trip Duration Section -->
+        <TextView
+            android:id="@+id/max_trip_duration_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maximum Trip Duration (days)"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/max_trip_duration_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter maximum duration"
+            android:inputType="number"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Preferred Destinations Section -->
+        <TextView
+            android:id="@+id/preferred_destinations_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferred Destinations"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/preferred_destinations_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter preferred destinations"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Interests Section -->
+        <TextView
+            android:id="@+id/interests_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interests"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/interests_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your interests"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Preferred Airlines Section -->
+        <TextView
+            android:id="@+id/preferred_airlines_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferred Airlines"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/preferred_airlines_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter preferred airlines"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Accommodation Type Section -->
+        <TextView
+            android:id="@+id/accommodation_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferred Accommodation Type"
+            android:textSize="18sp"
+            android:textColor="@color/titleTextColor"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/accommodation_type_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter accommodation type"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/buttonBackground"
+            android:textColor="@color/buttonTextColor"/>
+
+    </LinearLayout>
+
+</ScrollView>

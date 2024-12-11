@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Itinerary Management"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/titleTextColor"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/createItineraryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create New Itinerary"
+            android:backgroundTint="@color/buttonBackground"
+            android:textColor="@color/buttonTextColor"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/viewAllItinerariesButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View All Itineraries"
+            android:backgroundTint="@color/buttonBackground"
+            android:textColor="@color/buttonTextColor" />
+
+    </LinearLayout>
+</ScrollView>

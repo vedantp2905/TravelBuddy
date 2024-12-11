@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/background_color"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Logo at the Top Center -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="174dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/travelbuddy_logo" />
+
+    <!-- Travel Buddy App Name -->
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Travel Buddy"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Sign Up Button -->
+    <Button
+        android:id="@+id/btnGoToSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"/>
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/btnGoToLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="18sp"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"/>
+
+</LinearLayout>

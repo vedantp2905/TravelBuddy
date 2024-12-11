@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <!-- Poll Title Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Poll Title"
+        android:textColor="@color/titleTextColor"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Poll Title Input -->
+    <EditText
+        android:id="@+id/pollTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Poll Title"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/titleTextColor"
+        android:textColorHint="@color/colorAccent"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Poll Options Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter options separated by commas"
+        android:textColor="@color/titleTextColor"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Poll Options Input -->
+    <EditText
+        android:id="@+id/pollOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Option 1, Option 2"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/titleTextColor"
+        android:textColorHint="@color/colorAccent"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Create Poll Button -->
+    <Button
+        android:id="@+id/createPollButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Poll"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Active Polls Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Active Polls"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <!-- Active Polls List View -->
+    <ListView
+        android:id="@+id/activePollsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="1dp"
+        android:padding="8dp" />
+
+</LinearLayout>

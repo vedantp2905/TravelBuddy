@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <!-- Wrapper LinearLayout to contain all child views -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/profile_image_view"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/profilepicture" />
+        <LinearLayout
+            android:id="@+id/status_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/current_status_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Status"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/current_status_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/status_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Update your status"
+                android:inputType="text"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/update_status_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Status"/>
+        </LinearLayout>
+
+
+        <!-- Profile Details Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Profile"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- About Me -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Me"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/about_me_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Travel Budget -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel Budget"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/travel_budget_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Travel Style -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel Style"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/travel_style_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Travel Experience Level -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel Experience Level"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/travel_experience_level_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Max Trip Duration -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max Trip Duration"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/max_trip_duration_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Preferred Destinations -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferred Destinations"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/preferred_destinations_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Interests -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interests"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/interests_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Preferred Airlines -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferred Airlines"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/preferred_airlines_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Accommodation Type -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accommodation Type"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/accommodation_type_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Dietary Restrictions -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dietary Restrictions"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/dietary_restrictions_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Passport Country -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Passport Country"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/passport_country_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Frequent Flyer Programs -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frequent Flyer Programs"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/frequent_flyer_programs_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Preferred Language -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferred Language"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/preferred_language_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+        <!-- Currency Preference -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Currency Preference"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/currency_preference_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp"
+            android:onClick="showEditDialog"/>
+
+    </LinearLayout>
+</ScrollView>

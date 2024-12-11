@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/reactionContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/replyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reply"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:drawableStart="@android:drawable/ic_menu_delete"
+        android:drawablePadding="8dp"
+        android:visibility="gone"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor" />
+
+</LinearLayout> 

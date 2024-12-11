@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="conversation-list">
+            <h2>Conversations</h2>
+            <ul id="conversationList"></ul>
+            <input type="text" id="newConversationInput" placeholder="Enter user ID">
+            <button onclick="startNewConversation()">Start New Conversation</button>
+        </div>
+        <div id="chat-window">
+            <h2 id="chatHeader">Select a conversation</h2>
+            <div id="messages"></div>
+            <input type="text" id="message" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <button id="show-upgrade-button" onclick="showUpgradeForm()">Upgrade to Premium</button>
+
+    <div id="upgrade-container" style="display: none;">
+        <h2>Upgrade to Premium</h2>
+        <select id="plan-select">
+            <option value="monthly">Monthly Plan ($9.99)</option>
+            <option value="annual">Annual Plan ($99.00)</option>
+        </select>
+        <form id="payment-form">
+            <div id="card-element"></div>
+            <div id="card-errors" role="alert"></div>
+            <button type="submit">Upgrade</button>
+        </form>
+    </div>
+
+    <script>
+        let stompClient = null;
+        let currentChatId = null;
+        const userId = localStorage.getItem('userId');
+
+        function connectWebSocket() {
+            const socket = new SockJS('http://coms-3090-010.class.las.iastate.edu:8080/ws');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                
+                // Subscribe to user-specific topic
+                stompClient.subscribe('/topic/user/' + userId, function (message) {
+                    const receivedMessage = JSON.parse(message.body);
+                    showMessage(receivedMessage);
+                    loadConversations();
+                });
+            });
+        }
+
+        function loadChat(conversationId, otherUsername) {
+            currentChatId = conversationId;
+            document.getElementById('chatHeader').textContent = `Chat with ${otherUsername}`;
+            document.getElementById('messages').innerHTML = '';
+            fetchMessages(conversationId);
+
+            // Unsubscribe from previous conversation topic if any
+            if (window.currentSubscription) {
+                window.currentSubscription.unsubscribe();
+            }
+
+            // Subscribe to the new conversation topic
+            window.currentSubscription = stompClient.subscribe('/topic/conversations/' + conversationId, function (message) {
+                showMessage(JSON.parse(message.body));
+            });
+        }
+
+        function showMessage(message) {
+            const messagesContainer = document.getElementById('messages');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${message.sender}: ${message.content}`;
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // If the message is for the current conversation, no need to refresh the list
+            if (message.conversationId !== currentChatId) {
+                loadConversations();
+            }
+        }
+
+        function sendMessage() {
+            const messageContent = document.getElementById('message').value;
+            if (messageContent && messageContent.trim() !== '' && currentChatId) {
+                const chatMessage = {
+                    conversationId: currentChatId,
+                    userId: userId,
+                    content: messageContent,
+                    type: 'CHAT'
+                };
+                stompClient.send("/app/chat", {}, JSON.stringify(chatMessage));
+                document.getElementById('message').value = '';
+                
+                // Refresh the conversation list after sending a message
+                setTimeout(loadConversations, 500);
+            } else {
+                console.error('Cannot send message: No active conversation or empty message');
+            }
+        }
+
+        function loadConversations() {
+            fetch(`/api/conversations/${userId}`)
+                .then(response => response.json())
+                .then(conversations => {
+                    const conversationList = document.getElementById('conversationList');
+                    conversationList.innerHTML = '';
+                    conversations.forEach(conv => {
+                        updateConversationInList(conv);
+                    });
+                    
+                    // If there's a current chat, make sure it's still selected
+                    if (currentChatId) {
+                        const currentChat = conversations.find(conv => conv.id === currentChatId);
+                        if (currentChat) {
+                            loadChat(currentChatId, currentChat.otherUsername);
+                        } else {
+                            // If the current chat is not in the list anymore, reset the chat window
+                            document.getElementById('chatHeader').textContent = 'Select a conversation';
+                            document.getElementById('messages').innerHTML = '';
+                            currentChatId = null;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading conversations:', error);
+                });
+        }
+
+        function updateConversationInList(conversation) {
+            let conversationElement = document.querySelector(`#conversationList li[data-conversation-id="${conversation.id}"]`);
+            if (conversationElement) {
+                conversationElement.querySelector('.conversation-name').textContent = `Chat with ${conversation.otherUsername}`;
+            } else {
+                addConversationToList(conversation);
+            }
+        }
+
+        function addConversationToList(conversation) {
+            const conversationList = document.getElementById('conversationList');
+            const li = document.createElement('li');
+            li.dataset.conversationId = conversation.id;
+            
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'conversation-name';
+            nameSpan.textContent = `Chat with ${conversation.otherUsername}`;
+            li.appendChild(nameSpan);
+            
+            li.onclick = () => loadChat(conversation.id, conversation.otherUsername);
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = (e) => {
+                e.stopPropagation();
+                deleteConversation(conversation.id);
+            };
+            li.appendChild(deleteButton);
+            
+            conversationList.appendChild(li);
+        }
+
+        function fetchMessages(conversationId) {
+            fetch(`/api/messages/${conversationId}`)
+                .then(response => response.json())
+                .then(messages => {
+                    const messagesContainer = document.getElementById('messages');
+                    messagesContainer.innerHTML = '';
+                    messages.forEach(message => {
+                        const messageElement = document.createElement('div');
+                        messageElement.textContent = `${message.sender}: ${message.content}`;
+                        messagesContainer.appendChild(messageElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching messages:', error);
+                });
+        }
+
+        function startNewConversation() {
+            const otherUserId = document.getElementById('newConversationInput').value;
+            fetch('/api/conversations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: userId, otherUserId: otherUserId }),
+            })
+            .then(response => response.json())
+            .then(conversation => {
+                updateConversationInList(conversation);
+                loadChat(conversation.id, conversation.otherUsername);
+                document.getElementById('newConversationInput').value = '';
+            })
+            .catch(error => {
+                console.error('Error starting new conversation:', error);
+            });
+        }
+
+        function deleteConversation(conversationId) {
+            fetch(`/api/conversations/${conversationId}?userId=${userId}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    const conversationElement = document.querySelector(`#conversationList li[data-conversation-id="${conversationId}"]`);
+                    if (conversationElement) {
+                        conversationElement.remove();
+                    }
+                    if (currentChatId === conversationId) {
+                        document.getElementById('chatHeader').textContent = 'Select a conversation';
+                        document.getElementById('messages').innerHTML = '';
+                        currentChatId = null;
+                    }
+                } else {
+                    console.error('Failed to delete conversation');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting conversation:', error);
+            });
+        }
+
+        // Initialize the chat application
+        document.addEventListener('DOMContentLoaded', function() {
+            connectWebSocket();
+            loadConversations();
+            // Fetch and set initial role
+            fetchAndSetInitialRole();
+        });
+
+        async function fetchAndSetInitialRole() {
+            try {
+                const response = await fetch(`/api/users/${userId}`);
+                if (response.ok) {
+                    const userData = await response.json();
+                    updateUIForRole(userData.role);
+                }
+            } catch (error) {
+                console.error('Error fetching user role:', error);
+            }
+        }
+
+        function showUpgradeForm() {
+            document.getElementById('upgrade-container').style.display = 'block';
+        }
+
+        const stripe = Stripe('pk_test_51QBOcp05ijGEGObCtM7k9AeZnPHYDYmiwaZ8CPijjGqafuzkLq3cfgyIwczl315SbtSALzd9lFag8A6CPWqbct5E00UVUnwCMs');
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        const form = document.getElementById('payment-form');
+        const planSelect = document.getElementById('plan-select');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const selectedPlan = planSelect.value;
+
+            try {
+                const response = await fetch(`/api/users/${userId}/upgrade-to-premium?plan=${selectedPlan}`, {
+                    method: 'POST'
+                });
+                if (!response.ok) {
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || "Unknown error occurred");
+                    } else {
+                        const errorText = await response.text();
+                        throw new Error(errorText);
+                    }
+                }
+
+                const data = await response.json();
+
+                const result = await stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                        card: cardElement
+                    }
+                });
+
+                if (result.error) {
+                    document.getElementById('card-errors').textContent = result.error.message;
+                } else {
+                    const confirmResponse = await fetch(`/api/users/${userId}/confirm-premium-upgrade`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ paymentIntentId: result.paymentIntent.id, plan: selectedPlan })
+                    });
+
+                    if (confirmResponse.ok) {
+                        const confirmData = await confirmResponse.json();
+                        alert(confirmData.message + ` Your new role is: ${confirmData.role}`);
+                        // Update UI based on new role
+                        updateUIForRole(confirmData.role);
+                    } else {
+                        const errorData = await confirmResponse.json();
+                        alert(errorData.error + ` Your current role is: ${errorData.role}`);
+                    }
+                }
+            } catch (error) {
+                document.getElementById('card-errors').textContent = error.message;
+            }
+        });
+
+        function updateUIForRole(role) {
+            if (role === 3) {
+                // User is premium
+                document.getElementById('show-upgrade-button').style.display = 'none';
+                // Add any premium features or UI changes here
+            } else {
+                document.getElementById('show-upgrade-button').style.display = 'block';
+            }
+            // You can add more role-based UI changes here
+        }
+    </script>
+</body>
+</html>

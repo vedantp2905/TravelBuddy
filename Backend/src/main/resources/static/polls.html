@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Polls</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <style>
+        .options button.selected {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+        .poll-results {
+            margin: 15px 0;
+        }
+        .option-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #f5f5f5;
+        }
+        .option-result.winner {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        .poll-status {
+            color: #2196f3;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+        }
+        .poll-controls {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="polls-container">
+        <div id="create-poll">
+            <h2>Create New Poll</h2>
+            <input type="text" id="poll-title" placeholder="Poll Title">
+            <div id="options-container">
+                <input type="text" class="poll-option" placeholder="Option 1">
+                <input type="text" class="poll-option" placeholder="Option 2">
+            </div>
+            <button onclick="addOption()">Add Option</button>
+            <button onclick="createPoll()">Create Poll</button>
+        </div>
+
+        <div id="active-polls">
+            <h2>Active Polls</h2>
+        </div>
+    </div>
+
+    <script>
+        let stompClient = null;
+        const userId = localStorage.getItem('userId');
+
+        function connectWebSocket() {
+            const socket = new SockJS('http://coms-3090-010.class.las.iastate.edu:8080/ws');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                
+                // Subscribe to polls topic for real-time updates
+                stompClient.subscribe('/topic/polls', function (message) {
+                    console.log('Received poll update:', message);
+                    const poll = JSON.parse(message.body);
+                    updatePollDisplay(poll);
+                });
+
+                // Load initial polls after connection
+                loadInitialPolls();
+            });
+        }
+
+        function loadInitialPolls() {
+            fetch('/api/polls')
+                .then(response => response.json())
+                .then(polls => polls.forEach(updatePollDisplay))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function createPoll() {
+            const title = document.getElementById('poll-title').value;
+            const optionInputs = document.getElementsByClassName('poll-option');
+            const options = Array.from(optionInputs)
+                .map(input => input.value)
+                .filter(value => value.trim() !== '');
+
+            if (!title || options.length < 2) {
+                alert('Please provide a title and at least 2 options');
+                return;
+            }
+
+            const poll = {
+                title: title,
+                options: options,
+                creatorId: userId
+            };
+
+            fetch('/api/polls', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(poll)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('poll-title').value = '';
+                Array.from(optionInputs).forEach(input => input.value = '');
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function addOption() {
+            const container = document.getElementById('options-container');
+            const optionCount = container.children.length;
+            
+            if (optionCount < 5) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'poll-option';
+                input.placeholder = `Option ${optionCount + 1}`;
+                container.appendChild(input);
+            } else {
+                alert('Maximum 5 options allowed');
+            }
+        }
+
+        function vote(pollId, option) {
+            stompClient.send("/app/poll/vote", {}, JSON.stringify({
+                pollId: pollId,
+                option: option,
+                userId: userId
+            }));
+        }
+
+        function updatePollDisplay(data) {
+            // Handle poll deletion
+            if (data.type === "DELETE") {
+                const pollElement = document.getElementById(`poll-${data.pollId}`);
+                if (pollElement) {
+                    pollElement.remove();
+                }
+                return;
+            }
+            
+            // Show winner message only to the user who closed the poll
+            if (data.type === "CLOSE" && data.voterId === parseInt(userId)) {
+                alert(data.message);
+            }
+            
+            // Remove the vote message alert and just update the display
+            const poll = data.poll || data;
+            let pollElement = document.getElementById(`poll-${poll.id}`);
+            
+            if (!pollElement) {
+                pollElement = document.createElement('div');
+                pollElement.id = `poll-${poll.id}`;
+                document.getElementById('active-polls').appendChild(pollElement);
+            }
+
+            const totalVotes = Object.values(poll.votes || {}).reduce((a, b) => a + b, 0);
+            
+            // Find winner(s) if poll is closed
+            let winnerMessage = '';
+            if (!poll.active) {
+                const maxVotes = Math.max(...Object.values(poll.votes || {}));
+                const winners = Object.entries(poll.votes || {})
+                    .filter(([_, votes]) => votes === maxVotes)
+                    .map(([option, _]) => option);
+                    
+                winnerMessage = winners.length > 1 
+                    ? `<p class="poll-status">Final Results: It's a tie between ${winners.join(', ')}</p>`
+                    : `<p class="poll-status">Final Results: Winner is ${winners[0]}</p>`;
+            }
+            
+            pollElement.innerHTML = `
+                <h3>${poll.title}</h3>
+                <div class="poll-results">
+                    ${poll.options.map(option => `
+                        <div class="option-result ${!poll.active && poll.votes[option] === Math.max(...Object.values(poll.votes || {})) ? 'winner' : ''}">
+                            <span>${option}: ${poll.votes[option] || 0} votes 
+                            (${totalVotes > 0 ? Math.round((poll.votes[option] || 0) / totalVotes * 100) : 0}%)</span>
+                            ${poll.active ? `
+                                <button onclick="vote(${poll.id}, '${option}')" 
+                                        ${!poll.active ? 'disabled' : ''}>
+                                    Vote
+                                </button>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+                ${poll.creatorId === parseInt(userId) ? `
+                    <div class="poll-controls">
+                        ${poll.active ? `<button onclick="closePoll(${poll.id})">Close Poll</button>` : ''}
+                        <button onclick="deletePoll(${poll.id})">Delete Poll</button>
+                    </div>
+                ` : ''}
+                ${!poll.active ? winnerMessage : ''}
+            `;
+        }
+
+        function closePoll(pollId) {
+            fetch(`/api/polls/${pollId}/close?userId=${userId}`, {
+                method: 'POST'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        throw new Error(text);
+                    });
+                }
+            })
+            .catch(error => {
+                alert(error.message);
+                console.error('Error:', error);
+            });
+        }
+
+        function deletePoll(pollId) {
+            if (confirm('Are you sure you want to delete this poll?')) {
+                fetch(`/api/polls/${pollId}?userId=${userId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => {
+                            throw new Error(text);
+                        });
+                    }
+                })
+                .catch(error => {
+                    alert(error.message);
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        function displayPoll(poll) {
+            const userVote = poll.votesList?.find(vote => vote.userId === parseInt(userId))?.selectedOption;
+            return `
+                <div id="poll-${poll.id}" class="poll">
+                    <h3>${poll.title}</h3>
+                    <div class="options">
+                        ${poll.options.map(option => `
+                            <button 
+                                onclick="vote(${poll.id}, '${option}')"
+                                ${userVote === option ? 'class="selected"' : ''}
+                            >
+                                ${option} (${poll.votes[option] || 0})
+                                ${userVote === option ? '✓' : ''}
+                            </button>
+                        `).join('')}
+                    </div>
+                    ${poll.creatorId === parseInt(userId) ? `
+                        <div class="poll-controls">
+                            ${poll.active ? `<button onclick="closePoll(${poll.id})">Close Poll</button>` : ''}
+                            <button onclick="deletePoll(${poll.id})">Delete Poll</button>
+                        </div>
+                    ` : ''}
+                    ${!poll.active ? '<p>Poll Closed</p>' : ''}
+                    ${userVote ? `<p>Your vote: ${userVote}</p>` : ''}
+                </div>
+            `;
+        }
+
+        // Load initial polls and connect WebSocket
+        window.onload = function() {
+            if (!userId) {
+                userId = prompt('Please enter your user ID:');
+                localStorage.setItem('userId', userId);
+            }
+            connectWebSocket();
+        };
+    </script>
+</body>
+</html> 

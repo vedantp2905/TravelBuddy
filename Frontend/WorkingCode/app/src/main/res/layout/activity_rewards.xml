@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@color/background_color">
+
+    <ImageView
+        android:id="@+id/rewardsIconLarge"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_rewards"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Rewards Points"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/rewardsBalanceTextLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 points"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Earn More Points!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/titleTextColor"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Earn 50 points for every post you share!\nEarn 10 points by winning polls!\n\nKeep posting, sharing, and participating in polls to grow your rewards. Use your points to upgrade to premium membership and unlock exclusive features."
+        android:textSize="16sp"
+        android:textColor="@color/titleTextColor"
+        android:gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Premium plans start at 1000 points/month or 7500 points/year"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/titleTextColor"
+        android:gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btnUpgradePremium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upgrade to Premium Membership"
+        android:backgroundTint="@color/buttonBackground"
+        android:textColor="@color/buttonTextColor"/>
+
+</LinearLayout> 

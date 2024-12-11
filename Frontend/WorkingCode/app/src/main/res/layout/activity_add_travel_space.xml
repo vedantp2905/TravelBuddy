@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create New Travel Space"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Title Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title" />
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Title"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF" /> <!-- Hardcoded background color for EditText -->
+
+        <!-- Description Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description" />
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Description"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF" />
+
+        <!-- Expiration Date Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expiration Date (YYYY-MM-DDTHH:MM:SS)" />
+        <EditText
+            android:id="@+id/expirationDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pick Expiration Date"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF" /> <!-- Hardcoded background color for EditText -->
+
+
+        <!-- Create Button -->
+        <Button
+            android:id="@+id/createTravelSpaceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Travel Space"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/buttonBackground"
+            android:textColor="@color/buttonTextColor" />
+    </LinearLayout>
+</ScrollView>

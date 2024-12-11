@@ -1,0 +1,134 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FinalApp"
+        tools:targetApi="31"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Other Activities -->
+        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".ProfilePictureActivity" android:exported="false"/>
+        <activity android:name=".JoinTravelSpaceActivity" android:exported="false"/>
+        <activity android:name=".TravelSpaceReplyActivity" android:exported="false"/>
+        <activity android:name=".TravelSpaceCommentActivity" android:exported="false"/>
+        <activity android:name=".TravelSpacesActivity" android:exported="false"/>
+        <activity android:name=".AboutYouProfile" android:exported="false"/>
+        <activity android:name=".AddTravelSpaceActivity" android:exported="false"/>
+        <activity android:name=".SignupActivity" android:exported="false"/>
+        <activity android:name=".ProfileActivity" android:exported="false"/>
+        <activity android:name=".UpgradeActivity" android:exported="false"/>
+        <activity android:name=".ChangePassActivity" android:exported="false"/>
+        <activity android:name=".AddDocumentActivity" android:exported="false"/>
+        <activity android:name=".ReviewActivity" android:exported="false"/>
+        <activity android:name=".HomeActivity" android:exported="true"/>
+        <activity android:name=".AdminActivity" android:exported="false"/>
+        <activity android:name=".TravelEntryActivity" android:exported="false"/>
+        <activity android:name=".SelectUserActivity" android:exported="false"/>
+        <activity android:name=".DirectMessageActivity" android:exported="false"/>
+        <activity android:name=".PollActivity" android:exported="false"/>
+        <activity android:name=".VoteActivity" android:exported="false"/>
+        <activity android:name=".ItinerariesActivity" android:exported="false"/>
+        <activity android:name=".TravelFeedActivity" android:exported="false"/>
+        <activity android:name=".CreatePostActivity" android:exported="false"/>
+        <activity android:name=".RewardsActivity" android:exported="false"/>
+        <activity android:name=".CreateItineraryActivity" android:exported="false"/>
+        <activity android:name=".ItineraryDetailActivity" android:exported="false"/>
+        <activity android:name=".CommentActivity" android:exported="false"/>
+        <activity android:name=".CreditCardUpgradeActivity" android:exported="false"/>
+        <activity android:name=".DocumentViewActivity" android:exported="false"/>
+        <activity android:name=".ManageDocumentsActivity" android:exported="false"/>
+        <activity android:name=".ForgotPasswordActivity" android:exported="false"/>
+        <activity android:name=".FriendsActivity" android:exported="false"/>
+        <activity android:name=".FriendsProfileActivity" android:exported="false"/>
+        <activity android:name=".ShareItineraryActivity" android:exported="false"/>
+        <activity android:name=".FriendRequestActivity" android:exported="false"/>
+
+        <!-- Verification code activity -->
+        <activity
+            android:name=".VerifyCodeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Reset password activity -->
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.finalapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".ViewProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ImageViewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".TriviaActivity" android:exported="false"/>
+        <activity android:name=".TriviaRoomActivity" android:exported="false"/>
+        <activity android:name=".TriviaGameActivity" android:exported="false"/>
+        <activity android:name=".TriviaResultsActivity" android:exported="false"/>
+
+        <activity
+            android:name=".TaskListActivity"
+            android:exported="false"
+            android:label="Trip Tasks"/>
+
+        <activity 
+            android:name=".LocalExplorerActivity"
+            android:exported="false"/>
+
+    </application>
+</manifest>

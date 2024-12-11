@@ -1,0 +1,6 @@
+flask
+crewai
+langchain-google-genai
+langchain-core
+pysqlite3-binary
+crewai-tools

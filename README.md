@@ -28,7 +28,7 @@ Full Stack Android App Development
 - Spring Security
 - JavaMail API
 - Stripe Payment
-- 
+- FLask Apps
 
 ### Frontend
 - Android (Native Java)

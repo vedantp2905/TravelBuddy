@@ -28,7 +28,7 @@ import java.util.List;
 public class ShareItineraryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "ShareItineraryActivity";
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/travelspace/get/";
+    private static final String BASE_URL = ApiConstants.BASE_URL + "/api/travelspace/get/";
 
     private RecyclerView travelSpacesRecyclerView;
     private TravelSpacesSendAdapter travelSpacesSendAdapter;

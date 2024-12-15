@@ -60,7 +60,7 @@ public class LocalExplorerActivity extends AppCompatActivity {
     private EditText citySearchInput;
     private ViewPager2 categoryPager;
     private TabLayout tabLayout;
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/local-explorer/";
+    private static final String BASE_URL = ApiConstants.BASE_URL + "/api/local-explorer/";
     private static final String TAG = "LocalExplorerActivity";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private FusedLocationProviderClient fusedLocationClient;

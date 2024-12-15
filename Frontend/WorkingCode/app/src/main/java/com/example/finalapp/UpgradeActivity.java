@@ -54,7 +54,7 @@ public class UpgradeActivity extends AppCompatActivity {
         }
 
         // Initialize Stripe SDK with your publishable key
-        PaymentConfiguration.init(getApplicationContext(), "XXX"); // TODO: change this to your stripe publishable key
+        PaymentConfiguration.init(getApplicationContext(), "pk_test_51QBOcp05ijGEGObCtM7k9AeZnPHYDYmiwaZ8CPijjGqafuzkLq3cfgyIwczl315SbtSALzd9lFag8A6CPWqbct5E00UVUnwCMs");
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
         logo = findViewById(R.id.logo);
 
@@ -112,7 +112,7 @@ public class UpgradeActivity extends AppCompatActivity {
     }
 
     private void processRewardsUpgrade() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/reward/" + userId + "/use-for-premium";
+        String url = ApiConstants.BASE_URL + "/api/reward/" + userId + "/use-for-premium";
         JSONObject requestBody = new JSONObject();
         try {
             requestBody.put("plan", selectedPlan);
@@ -193,7 +193,7 @@ public class UpgradeActivity extends AppCompatActivity {
         }
 
         // URL for confirming the upgrade
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId + "/confirm-premium-upgrade";
+        String url = ApiConstants.BASE_URL + "/api/users/" + userId + "/confirm-premium-upgrade";
 
         // Create a request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -237,7 +237,7 @@ public class UpgradeActivity extends AppCompatActivity {
     }
 
     private void fetchRewardsBalance() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/reward/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/reward/" + userId;
         
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

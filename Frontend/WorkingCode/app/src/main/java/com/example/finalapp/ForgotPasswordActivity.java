@@ -28,7 +28,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private ProgressDialog loadingDialog;
 
     // Endpoint URL for password reset
-    private static final String RESET_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/reset-password-request";
+    private static final String RESET_URL = ApiConstants.BASE_URL + "/api/users/reset-password-request";
 
     /**
      * Initializes the activity and sets up UI components.

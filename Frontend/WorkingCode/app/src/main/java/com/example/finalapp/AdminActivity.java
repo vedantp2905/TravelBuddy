@@ -69,21 +69,15 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void deleteUserAccount(String id) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/delete/" + id;
+        String url = String.format(ApiConstants.DELETE_USER, id);
 
         JsonObjectRequest deleteRequest = new JsonObjectRequest(
                 Request.Method.DELETE, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Toast.makeText(AdminActivity.this, "User account deleted successfully!", Toast.LENGTH_SHORT).show();
-                    }
+                response -> {
+                    Toast.makeText(AdminActivity.this, "User account deleted successfully!", Toast.LENGTH_SHORT).show();
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        handleErrorResponse(error, "Failed to delete user");
-                    }
+                error -> {
+                    handleErrorResponse(error, "Failed to delete user");
                 }
         );
 
@@ -91,7 +85,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void updateNewsletter(String id, boolean isSubscribed) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/newsletter-preference/" + id;
+        String url = ApiConstants.BASE_URL + "/api/users/newsletter-preference/" + id;
 
         JSONObject requestBody = new JSONObject();
         try {

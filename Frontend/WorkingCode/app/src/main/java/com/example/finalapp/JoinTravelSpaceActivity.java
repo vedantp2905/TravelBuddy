@@ -82,7 +82,7 @@ public class JoinTravelSpaceActivity extends AppCompatActivity {
             requestPayload.put("description", description);
             requestPayload.put("postId", postId);
 
-            String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/travelspace/" + travelSpaceId + "/join";
+            String url = ApiConstants.BASE_URL + "/api/travelspace/" + travelSpaceId + "/join";
 
             // Send POST request to join the TravelSpace
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, requestPayload,

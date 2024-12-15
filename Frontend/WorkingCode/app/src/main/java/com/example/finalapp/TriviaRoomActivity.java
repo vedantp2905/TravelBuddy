@@ -83,7 +83,7 @@ public class TriviaRoomActivity extends AppCompatActivity {
     }
 
     private void setupWebSocket() {
-        String wsUrl = "ws://coms-3090-010.class.las.iastate.edu:8080/ws/websocket";
+        String wsUrl = ApiConstants.BASE_URL.replace("http://", "ws://") + "/ws/websocket";
         
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, wsUrl);
         stompClient.withClientHeartbeat(5000).withServerHeartbeat(5000);

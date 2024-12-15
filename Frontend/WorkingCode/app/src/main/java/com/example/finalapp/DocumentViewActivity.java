@@ -40,7 +40,7 @@ public class DocumentViewActivity extends AppCompatActivity {
     private PDFView pdfView;
 
     // Constants and member variables
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/document";
+    private static final String BASE_URL = ApiConstants.BASE_URL + "/api/document";
     private static final int PERMISSION_REQUEST_CODE = 123;
     private int documentId;
     private int userId;
@@ -239,10 +239,13 @@ public class DocumentViewActivity extends AppCompatActivity {
                 .setTitle("Delete Document")
                 .setMessage("Are you sure you want to delete this document?")
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    String fileDeleteUrl = BASE_URL + "/file/" + filePath.substring(filePath.lastIndexOf("/") + 1);
+                    // Extract filename from filePath
+                    String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+                    String fileDeleteUrl = String.format(BASE_URL + "/file/%s", fileName);
+                    
                     StringRequest fileDeleteRequest = new StringRequest(Request.Method.DELETE, fileDeleteUrl,
                             fileResponse -> {
-                                String dbDeleteUrl = BASE_URL + "/delete/" + documentId;
+                                String dbDeleteUrl = String.format(BASE_URL + "/delete/%d", documentId);
                                 StringRequest dbDeleteRequest = new StringRequest(Request.Method.DELETE, dbDeleteUrl,
                                         response -> {
                                             Toast.makeText(this, "Document deleted successfully", Toast.LENGTH_SHORT).show();

@@ -51,7 +51,7 @@ public class FriendRequestActivity extends AppCompatActivity {
     }
 
     private void loadFriendRequests() {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend-request/get/%s", userId);
+        String url = ApiConstants.BASE_URL + "/api/friend-request/get/" + userId;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
             response -> {
@@ -90,7 +90,7 @@ public class FriendRequestActivity extends AppCompatActivity {
     }
 
     private void loadUserDetails(int userId, String sentAt) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/users/%d", userId);
+        String url = ApiConstants.BASE_URL + "/api/users/" + userId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
             response -> {
@@ -123,8 +123,7 @@ public class FriendRequestActivity extends AppCompatActivity {
     }
 
     private void onAcceptRequest(FriendRequest request) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend-request/accept-request/?senderId=%d&receiverId=%s",
-                request.getSenderId(), userId);
+        String url = ApiConstants.BASE_URL + "/api/friend-request/accept-request/?senderId=" + request.getSenderId() + "&receiverId=" + userId;
 
         StringRequest acceptRequest = new StringRequest(Request.Method.DELETE, url,
             response -> {
@@ -178,8 +177,7 @@ public class FriendRequestActivity extends AppCompatActivity {
     }
 
     private void onRejectRequest(FriendRequest request) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend-request/reject-request/?senderId=%d&receiverId=%s",
-                request.getSenderId(), userId);
+        String url = ApiConstants.BASE_URL + "/api/friend-request/reject-request/?senderId=" + request.getSenderId() + "&receiverId=" + userId;
 
         StringRequest rejectRequest = new StringRequest(Request.Method.DELETE, url,
             response -> {

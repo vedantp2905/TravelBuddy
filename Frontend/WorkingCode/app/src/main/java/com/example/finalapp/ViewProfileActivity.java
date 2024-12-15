@@ -70,7 +70,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         fetchUserStatus();
     }
     private void fetchProfilePicture() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/profile-picture/get/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/profile-picture/get/" + userId;
 
         if (!url.isEmpty()) {
             Glide.with(this)
@@ -121,7 +121,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     }
 
     private void fetchUserStatus() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/user-status/get/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/user-status/get/" + userId;
         Log.d("NetworkRequest", url);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -149,7 +149,7 @@ public class ViewProfileActivity extends AppCompatActivity {
 
     private void updateUserStatus() {
         String newStatus = statusInput.getText().toString().trim();
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/user-status/add/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/user-status/add/" + userId;
         if (newStatus.isEmpty()) {
             showToast("Status cannot be empty");
             return;
@@ -203,7 +203,7 @@ public class ViewProfileActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/profile-picture/upload/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/profile-picture/upload/" + userId;
 
         try {
             InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
@@ -331,7 +331,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     }
 
     private void fetchUserProfile() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/profile/" + userId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 this::populateFields,
@@ -442,7 +442,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         return "";
     }
     private void sendUpdateToBackend(JSONObject updateData) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/profile/" + userId;
 
         JsonObjectRequest updateRequest = new JsonObjectRequest(
                 Request.Method.PATCH, url, updateData,

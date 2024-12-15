@@ -81,7 +81,7 @@ public class PollActivity extends AppCompatActivity {
     }
 
     private void setupWebSocket() {
-        String wsUrl = "ws://coms-3090-010.class.las.iastate.edu:8080/ws";
+        String wsUrl = "ws://" + ApiConstants.BASE_URL + "/ws";
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, wsUrl);
         stompClient.withClientHeartbeat(10000).withServerHeartbeat(10000);
 
@@ -148,7 +148,7 @@ public class PollActivity extends AppCompatActivity {
             pollData.put("creatorId", getUserId()); // Use dynamic user ID
 
             JsonObjectRequest createPollRequest = new JsonObjectRequest(Request.Method.POST,
-                    "http://coms-3090-010.class.las.iastate.edu:8080/api/polls",
+                    ApiConstants.BASE_URL + "/api/polls",
                     pollData,
                     response -> {
                         Toast.makeText(this, "Poll created!", Toast.LENGTH_SHORT).show();
@@ -166,7 +166,7 @@ public class PollActivity extends AppCompatActivity {
 
     private void getActivePolls() {
         JsonArrayRequest getActivePollsRequest = new JsonArrayRequest(Request.Method.GET,
-                "http://coms-3090-010.class.las.iastate.edu:8080/api/polls",
+                ApiConstants.BASE_URL + "/api/polls",
                 null,
                 response -> {
                     Log.d("PollActivity", "Active Polls Response: " + response.toString());

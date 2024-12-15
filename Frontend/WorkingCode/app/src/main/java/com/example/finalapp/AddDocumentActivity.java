@@ -42,7 +42,7 @@ public class AddDocumentActivity extends AppCompatActivity {
     private TextView selectedFileTextView;
     private Uri selectedPdfUri;
     private Calendar calendar;
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/document";
+    private static final String BASE_URL = ApiConstants.BASE_URL + "/api/document";
     private int userId;
     private int documentId;
     private boolean isUpdateMode = false;
@@ -254,10 +254,12 @@ public class AddDocumentActivity extends AppCompatActivity {
                 InputStream inputStream = getContentResolver().openInputStream(selectedPdfUri);
                 byte[] fileBytes = getBytes(inputStream);
                 String fileName = getFileNameFromUri(selectedPdfUri);
+                
+                // Set proper PDF MIME type
                 builder.addFormDataPart("file", fileName,
                         RequestBody.create(MediaType.parse("application/pdf"), fileBytes));
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e("AddDocument", "Error reading PDF: " + e.getMessage());
                 Toast.makeText(this, "Error reading PDF file", Toast.LENGTH_SHORT).show();
                 return;
             }

@@ -51,7 +51,7 @@ import java.util.Map;
 public class DirectMessageActivity extends AppCompatActivity {
     private StompClient stompClient;
     private CompositeDisposable compositeDisposable;
-    private String serverUrl = "http://coms-3090-010.class.las.iastate.edu:8080/ws/websocket";
+    private String serverUrl = ApiConstants.BASE_URL + "/ws/websocket";
     private MessageAdapter messageAdapter;
     private RecyclerView messagesRecyclerView;
     private String conversationId;
@@ -69,7 +69,7 @@ public class DirectMessageActivity extends AppCompatActivity {
             stompClient.disconnect();
         }
 
-        String wsUrl = "ws://coms-3090-010.class.las.iastate.edu:8080/ws/websocket";
+        String wsUrl = ApiConstants.BASE_URL.replace("http://", "ws://") + "/ws/websocket";
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, wsUrl);
         
         // Enable heartbeat only

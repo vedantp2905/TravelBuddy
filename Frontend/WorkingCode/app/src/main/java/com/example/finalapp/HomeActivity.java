@@ -218,7 +218,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void fetchUserProfile(String userId) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/" + userId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -240,7 +240,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void fetchNewsletterPreference(String userId) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/newsletter-preference/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/newsletter-preference/" + userId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -306,7 +306,7 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/newsletter-preference/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/newsletter-preference/" + userId;
 
         JSONObject requestBody = new JSONObject();
         try {
@@ -447,7 +447,7 @@ public class HomeActivity extends AppCompatActivity {
     private void fetchRewardsBalance() {
         String userId = String.valueOf(getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
                 .getInt("userId", -1));
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/reward/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/reward/" + userId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

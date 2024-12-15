@@ -72,7 +72,7 @@ public class ItinerariesActivity extends AppCompatActivity {
      * Makes a GET request to the server's itinerary endpoint and parses the JSON response.
      */
     private void fetchItineraries() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/itineraries";
+        String url = ApiConstants.BASE_URL + "/api/itineraries";
 
         // Create a JSON Array request to fetch itineraries
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,

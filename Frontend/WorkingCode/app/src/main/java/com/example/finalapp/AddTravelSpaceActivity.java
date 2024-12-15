@@ -121,7 +121,7 @@ public class AddTravelSpaceActivity extends AppCompatActivity {
             }
 
             // Define the endpoint URL
-            String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/travelspace/create/";
+            String url = ApiConstants.BASE_URL + "/api/travelspace/create/";
 
             // Create a new JsonObjectRequest
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, travelSpaceData,

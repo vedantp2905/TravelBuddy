@@ -50,7 +50,7 @@ public class SelectUserActivity extends AppCompatActivity {
     private ChatApiService apiService;
     private StompClient stompClient;
     private CompositeDisposable compositeDisposable;
-    private static final String SERVER_URL = "http://coms-3090-010.class.las.iastate.edu:8080/ws/websocket";
+    private static final String SERVER_URL = ApiConstants.BASE_URL + "/ws/websocket";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

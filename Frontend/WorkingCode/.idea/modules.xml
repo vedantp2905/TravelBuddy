@@ -3,6 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FinalApp.iml" filepath="$PROJECT_DIR$/.idea/FinalApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FinalApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FinalApp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FinalApp.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FinalApp.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FinalApp.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FinalApp.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FinalApp.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FinalApp.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myapplication_309/FinalApp.myapplication_309.iml" filepath="$PROJECT_DIR$/.idea/modules/myapplication_309/FinalApp.myapplication_309.iml" />
     </modules>
   </component>
 </project>

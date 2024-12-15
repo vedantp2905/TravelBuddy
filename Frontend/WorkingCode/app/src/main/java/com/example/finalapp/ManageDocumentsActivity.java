@@ -30,7 +30,7 @@ public class ManageDocumentsActivity extends AppCompatActivity {
     private ListView documentListView;
     private FloatingActionButton addDocumentButton;
     private TextView noDocumentsText;
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/document";
+    private static final String BASE_URL = ApiConstants.BASE_URL + "/api/document";
     private int userId;
     private List<Document> documentList; // Use List<Document> instead of List<Map<String, String>>
 
@@ -142,7 +142,7 @@ public class ManageDocumentsActivity extends AppCompatActivity {
     }
 
     private void deleteDocument(int documentId) {
-        String url = BASE_URL + "/delete/" + documentId;
+        String url = BASE_URL + "/api/document/delete/" + documentId;
         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, url,
                 response -> {
                     Toast.makeText(this, "Document deleted successfully", Toast.LENGTH_SHORT).show();

@@ -30,7 +30,7 @@ public class TravelPostAdapter extends RecyclerView.Adapter<TravelPostAdapter.Vi
     private String userId;
     private TravelApiService apiService;
     private Set<Long> likedPosts;
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080"; // Use your actual backend URL
+    private static final String BASE_URL = ApiConstants.BASE_URL; // Use your actual backend URL
 
 
     public TravelPostAdapter(Context context, List<TravelPost> posts, String userId) {

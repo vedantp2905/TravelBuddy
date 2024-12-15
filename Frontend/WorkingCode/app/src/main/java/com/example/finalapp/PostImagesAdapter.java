@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.ImageViewHolder> {
     private Context context;
     private long postId;
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080";
+    private static final String BASE_URL = ApiConstants.BASE_URL;
 
     public PostImagesAdapter(Context context, long postId) {
         this.context = context;

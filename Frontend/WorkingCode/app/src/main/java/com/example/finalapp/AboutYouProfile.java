@@ -107,7 +107,7 @@ public class AboutYouProfile extends AppCompatActivity {
     }
 
     private void fetchUserProfile(String id) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + id;
+        String url = ApiConstants.BASE_URL + "/api/users/profile/" + id;
 
         JsonObjectRequest getRequest = new JsonObjectRequest(
                 Request.Method.GET, url, null,
@@ -202,7 +202,7 @@ public class AboutYouProfile extends AppCompatActivity {
             completeProfile.put("currencyPreference", currencyPreferenceEditText.getText().toString());
             completeProfile.put("profileCompleted", true);
 
-            String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + getUserId();
+            String url = ApiConstants.BASE_URL + "/api/users/profile/" + getUserId();
             
             JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST, url, completeProfile,

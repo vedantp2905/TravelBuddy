@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.finalapp.ApiConstants.BASE_URL;
 import android.util.Log;
 
 public class TravelSpaceReplyActivity extends AppCompatActivity {
@@ -110,42 +111,46 @@ public class TravelSpaceReplyActivity extends AppCompatActivity {
 
     // Method to handle posting a reply
     private void postReply(String reply) {
-        // Define the endpoint URL
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/travelspace/" + spaceId + "/messages/" + messageId + "/reply?userId=" + userId;
+        String url = BASE_URL + "/api/travelspace/" + spaceId + "/messages/" + messageId + "/reply?userId=" + userId;
+        Log.d(TAG, "Posting reply to: " + url);
 
-        Log.d(TAG, "Posting reply to: " + url);  // Log the URL for debugging
-
-        // Create a new StringRequest (sending plain text)
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        try {
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("message", reply);
+            
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 response -> {
                     Toast.makeText(TravelSpaceReplyActivity.this, "Reply posted successfully", Toast.LENGTH_SHORT).show();
-                    finish(); // Optionally close the activity
+                    finish();
                 },
                 error -> {
-                    Toast.makeText(TravelSpaceReplyActivity.this, "Error posting reply: " + error.getMessage(), Toast.LENGTH_LONG).show();
-                    Log.e(TAG, "Error posting reply: " + error.getMessage()); // Log the error for debugging
-                }) {
-            @Override
-            public byte[] getBody() {
-                // Send the reply text as the request body
-                return reply.getBytes();
-            }
+                    String errorMessage = "Error posting reply";
+                    if (error.networkResponse != null) {
+                        errorMessage += " (Status " + error.networkResponse.statusCode + ")";
+                        try {
+                            String responseBody = new String(error.networkResponse.data, "UTF-8");
+                            Log.e(TAG, "Error response body: " + responseBody);
+                            errorMessage += ": " + responseBody;
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error reading error response", e);
+                        }
+                    } else {
+                        errorMessage += ": Network error or timeout";
+                    }
+                    Toast.makeText(TravelSpaceReplyActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "Error details: " + errorMessage, error);
+                });
 
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "text/plain"); // Ensure the correct Content-Type is set
-                return headers;
-            }
-        };
-
-        // Add the request to the RequestQueue
-        requestQueue.add(stringRequest);
+            requestQueue.add(jsonRequest);
+        } catch (JSONException e) {
+            Log.e(TAG, "Error creating JSON body", e);
+            Toast.makeText(this, "Error preparing request", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Method to fetch itinerary data
     private void fetchItinerary(String spaceId) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/itineraries/" + spaceId;
+        String url = BASE_URL + "/api/itineraries/" + spaceId;
 
         Log.d(TAG, "Fetching itinerary for spaceId: " + spaceId);  // Log the spaceId for debugging
         Toast.makeText(TravelSpaceReplyActivity.this, "Fetching itinerary for: " + spaceId, Toast.LENGTH_LONG).show();

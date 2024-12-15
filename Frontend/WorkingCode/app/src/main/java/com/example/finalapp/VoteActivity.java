@@ -143,13 +143,13 @@ public class VoteActivity extends AppCompatActivity {
 
     private void setupWebSocket() {
         // Use the correct endpoint from your Spring config
-        String wsUrl = "ws://coms-3090-010.class.las.iastate.edu:8080/ws/websocket";
+        String wsUrl = "ws://" + ApiConstants.BASE_URL + "/ws/websocket";
         Log.d("VoteActivity", "Setting up WebSocket connection to: " + wsUrl);
         
         // Create connection headers
         Map<String, String> connectHttpHeaders = new HashMap<>();
         connectHttpHeaders.put("Sec-WebSocket-Protocol", "v10.stomp, v11.stomp, v12.stomp");
-        connectHttpHeaders.put("Origin", "http://coms-3090-010.class.las.iastate.edu:8080");
+        connectHttpHeaders.put("Origin", ApiConstants.BASE_URL);
 
         // Create StompClient
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, wsUrl, connectHttpHeaders);

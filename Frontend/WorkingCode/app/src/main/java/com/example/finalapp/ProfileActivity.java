@@ -125,7 +125,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void fetchUserProfile(String id) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + id;
+        String url = ApiConstants.BASE_URL + "/api/users/profile/" + id;
 
         JsonObjectRequest getRequest = new JsonObjectRequest(
                 Request.Method.GET, url, null,
@@ -185,7 +185,7 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
         
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/profile/" + userId;
         JSONObject profileData = constructProfileData();
         profileData.put("profileCompleted", true);
 
@@ -236,7 +236,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserProfile() throws JSONException {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + userId;
+        String url = ApiConstants.UPDATE_USER + userId;
         JSONObject profileData = constructProfileData();
 
         JsonObjectRequest updateRequest = new JsonObjectRequest(
@@ -255,7 +255,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void deleteUserAccount(String id) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + id;
+        String url = ApiConstants.DELETE_USER + id;
 
         JsonObjectRequest deleteRequest = new JsonObjectRequest(
                 Request.Method.DELETE, url, null,
@@ -388,7 +388,7 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/profile-picture/upload/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/profile-picture/upload/" + userId;
 
         try {
             InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
@@ -488,7 +488,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void fetchProfilePicture() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/profile-picture/get/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/profile-picture/get/" + userId;
 
         if (!url.isEmpty()) {
             Glide.with(this)

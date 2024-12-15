@@ -29,8 +29,8 @@ public class VerifyCodeActivity extends AppCompatActivity {
     private TextView tvResendCode;
     private ProgressDialog loadingDialog;
     private String email;
-    private static final String VERIFY_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/verify-reset-code";
-    private static final String RESEND_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/reset-password-request";
+    private static final String VERIFY_URL = ApiConstants.BASE_URL + "/api/users/verify-reset-code";
+    private static final String RESEND_URL = ApiConstants.BASE_URL + "/api/users/reset-password-request";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

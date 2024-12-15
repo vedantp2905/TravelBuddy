@@ -27,7 +27,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import android.text.Html;
-
+import com.example.finalapp.ApiConstants;
 
 /**
  * Activity for viewing and posting comments within a specific travel space.
@@ -50,6 +50,8 @@ public class TravelSpaceCommentActivity extends AppCompatActivity {
     private static final int POLLING_INTERVAL = 3000; // Poll every 3 seconds
     private String lastMessageId = "0"; // Keeps track of the last fetched message ID
     private String messageType;
+    private static final String BASE_URL = ApiConstants.BASE_URL;
+
     /**
      * Runnable task for polling new comments from the server.
      */
@@ -200,7 +202,7 @@ public class TravelSpaceCommentActivity extends AppCompatActivity {
      * Loads comments from the server and updates the RecyclerView.
      */
     private void loadComments() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/travelspace/get-messages/" + travelSpaceId;
+        String url = BASE_URL + "/api/travelspace/get-messages/" + travelSpaceId;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
@@ -314,7 +316,7 @@ public class TravelSpaceCommentActivity extends AppCompatActivity {
     private void setupWebSocket(String userId) {
         URI uri;
         try {
-            uri = new URI("ws://coms-3090-010.class.las.iastate.edu:8080/travelspace/" + userId + "/" + travelSpaceId);
+            uri = new URI(BASE_URL.replace("http://", "ws://") + "/travelspace/" + userId + "/" + travelSpaceId);
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;

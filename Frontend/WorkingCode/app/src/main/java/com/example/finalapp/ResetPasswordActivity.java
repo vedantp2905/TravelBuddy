@@ -19,7 +19,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private Button btnUpdatePassword;
     private ProgressDialog loadingDialog;
     private String email, code;
-    private static final String RESET_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/reset-password-with-code";
+    private static final String RESET_URL = ApiConstants.BASE_URL + "/api/users/reset-password-with-code";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

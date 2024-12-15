@@ -28,8 +28,8 @@ import java.util.List;
 public class TravelSpacesActivity extends AppCompatActivity {
 
     private static final String TAG = "TravelSpacesActivity";
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/travelspace/get/";
-    private static final String USERS_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/travelspace/get-users/";
+    private static final String BASE_URL = ApiConstants.BASE_URL + "/api/travelspace/get/";
+    private static final String USERS_URL = ApiConstants.BASE_URL + "/api/travelspace/get-users/";
 
     private RecyclerView travelSpacesRecyclerView;
     private TravelSpacesAdapter travelSpacesAdapter;

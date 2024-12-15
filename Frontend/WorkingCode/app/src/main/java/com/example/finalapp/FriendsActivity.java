@@ -180,7 +180,7 @@ public class FriendsActivity extends AppCompatActivity {
     }
 
     private void loadFriends() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/friend/get/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/friend/get/" + userId;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
             response -> {
@@ -207,8 +207,7 @@ public class FriendsActivity extends AppCompatActivity {
     private void searchUsers(String query) {
         try {
             String encodedQuery = URLEncoder.encode(query, "UTF-8");
-            String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend/search/?searcherId=%s&prompt=%s",
-                    userId, encodedQuery);
+            String url = ApiConstants.BASE_URL + "/api/friend/search/?searcherId=" + userId + "&prompt=" + encodedQuery;
             
             if (query.trim().isEmpty()) {
                 searchResults.clear();
@@ -284,8 +283,7 @@ public class FriendsActivity extends AppCompatActivity {
     }
 
     private boolean checkIfFriend(int targetUserId) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend/check-friendship?userId=%s&friendId=%d",
-                userId, targetUserId);
+        String url = ApiConstants.BASE_URL + "/api/friend/check-friendship?userId=" + userId + "&friendId=" + targetUserId;
                 
         try {
             URL checkUrl = new URL(url);
@@ -306,8 +304,7 @@ public class FriendsActivity extends AppCompatActivity {
     }
 
     private boolean checkPendingRequest(int targetUserId) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend-request/check-pending?senderId=%s&receiverId=%d",
-                userId, targetUserId);
+        String url = ApiConstants.BASE_URL + "/api/friend-request/check-pending?senderId=" + userId + "&receiverId=" + targetUserId;
                 
         try {
             URL checkUrl = new URL(url);
@@ -328,8 +325,7 @@ public class FriendsActivity extends AppCompatActivity {
     }
 
     private void sendFriendRequest(UserModel user) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend-request/send-request/?senderId=%s&receiverId=%d",
-                userId, user.getId());
+        String url = ApiConstants.BASE_URL + "/api/friend-request/send-request/?senderId=" + userId + "&receiverId=" + user.getId();
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
             response -> {
@@ -364,8 +360,7 @@ public class FriendsActivity extends AppCompatActivity {
     
     // Add method to handle friend request acceptance
     private void acceptFriendRequest(UserModel sender) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend/add/?userId=%s&friendId=%d",
-                userId, sender.getId());
+        String url = ApiConstants.BASE_URL + "/api/friend/add/?userId=" + userId + "&friendId=" + sender.getId();
     
         StringRequest request = new StringRequest(Request.Method.POST, url,
             response -> {
@@ -391,8 +386,7 @@ public class FriendsActivity extends AppCompatActivity {
     }
 
     private void onRemoveFriend(UserModel friend) {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend/remove/?userId=%s&friendId=%d",
-                userId, friend.getId());
+        String url = ApiConstants.BASE_URL + "/api/friend/remove/?userId=" + userId + "&friendId=" + friend.getId();
 
         StringRequest request = new StringRequest(Request.Method.DELETE, url,
             response -> {
@@ -444,8 +438,7 @@ public class FriendsActivity extends AppCompatActivity {
 
     private void onRemovedFriendClick(UserModel friend) {
         // Add friend back
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend/add/?userId=%s&friendId=%d",
-                userId, friend.getId());
+        String url = ApiConstants.BASE_URL + "/api/friend/add/?userId=" + userId + "&friendId=" + friend.getId();
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
             response -> {
@@ -496,8 +489,7 @@ public class FriendsActivity extends AppCompatActivity {
     }
 
     private void getFriendRequests() {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend-request/get/%s",
-                userId);
+        String url = ApiConstants.BASE_URL + "/api/friend-request/get/" + userId;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
             response -> {

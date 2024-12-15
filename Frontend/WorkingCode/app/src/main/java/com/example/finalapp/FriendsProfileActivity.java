@@ -120,7 +120,7 @@ public class FriendsProfileActivity extends AppCompatActivity {
     }
 
     private void fetchProfilePicture() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/profile-picture/get/" + viewedUserId;
+        String url = ApiConstants.BASE_URL + "/api/profile-picture/get/" + viewedUserId;
 
         // Create an ImageRequest to fetch the image
         ImageRequest imageRequest = new ImageRequest(url,
@@ -139,7 +139,7 @@ public class FriendsProfileActivity extends AppCompatActivity {
     }
 
     private void fetchUserStatus() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/user-status/get/" + viewedUserId;
+        String url = ApiConstants.BASE_URL + "/api/user-status/get/" + viewedUserId;
         Log.d("NetworkRequest", url);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -159,7 +159,7 @@ public class FriendsProfileActivity extends AppCompatActivity {
 
     private void loadProfileData() {
         // Endpoint for user profile data
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/%s", viewedUserId);
+        String url = ApiConstants.BASE_URL + "/api/users/profile/" + viewedUserId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -221,7 +221,7 @@ public class FriendsProfileActivity extends AppCompatActivity {
 
     private void loadPostsData() {
         // Corrected URL construction
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend/get-posts/%s", viewedUserId);
+        String url = ApiConstants.BASE_URL + "/api/friend/get-posts/" + viewedUserId;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
@@ -351,8 +351,7 @@ public class FriendsProfileActivity extends AppCompatActivity {
     }
 
     private void onUnfriend() {
-        String url = String.format("http://coms-3090-010.class.las.iastate.edu:8080/api/friend/remove/?userId=%s&friendId=%s",
-                userId, viewedUserId);
+        String url = ApiConstants.BASE_URL + "/api/friend/remove/?userId=" + userId + "&friendId=" + viewedUserId;
 
         StringRequest request = new StringRequest(Request.Method.DELETE, url,
             response -> {

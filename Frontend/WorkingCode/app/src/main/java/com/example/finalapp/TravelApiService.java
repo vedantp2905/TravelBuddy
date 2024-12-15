@@ -37,7 +37,7 @@ import java.io.IOException;
 
 public class TravelApiService {
 
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080";
+    private static final String BASE_URL = ApiConstants.BASE_URL;
     private final RequestQueue requestQueue;
     private static final String TAG = "TravelApiService";
     private final OkHttpClient client;

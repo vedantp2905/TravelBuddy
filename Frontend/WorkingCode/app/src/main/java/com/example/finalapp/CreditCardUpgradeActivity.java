@@ -80,7 +80,7 @@ public class CreditCardUpgradeActivity extends AppCompatActivity {
     }
 
     private void startUpgradeProcess() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId + 
+        String url = ApiConstants.BASE_URL + "/api/users/" + userId + 
                     "/upgrade-to-premium?plan=" + selectedPlan + 
                     "&paymentMethod=card";
 
@@ -142,7 +142,7 @@ public class CreditCardUpgradeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId + "/confirm-premium-upgrade";
+        String url = ApiConstants.BASE_URL + "/api/users/" + userId + "/confirm-premium-upgrade";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                 response -> {

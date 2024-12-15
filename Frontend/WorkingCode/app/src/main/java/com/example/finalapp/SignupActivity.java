@@ -20,7 +20,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private EditText etFirstName, etLastName, etUsername, etEmail, etPassword, etAge, etGender, confirmPasswordEdt;
     private Button btnSignUp;
-    private static final String SIGNUP_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/signup";
+    private static final String SIGNUP_URL = ApiConstants.BASE_URL + "/api/users/signup";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

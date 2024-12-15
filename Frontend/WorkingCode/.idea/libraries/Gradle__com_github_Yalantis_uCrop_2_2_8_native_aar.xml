@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.Yalantis:uCrop:2.2.8-native@aar" external-system-id="GRADLE">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0b767e1fcc7cfe170ff95ef68100ba86/transformed/jetified-uCrop-2.2.8-native/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0b767e1fcc7cfe170ff95ef68100ba86/transformed/jetified-uCrop-2.2.8-native/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0b767e1fcc7cfe170ff95ef68100ba86/transformed/jetified-uCrop-2.2.8-native/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0b767e1fcc7cfe170ff95ef68100ba86/transformed/jetified-uCrop-2.2.8-native/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.Yalantis/uCrop/2.2.8-native/fd87deaab0be928ef6ea77c456ad0e9e7c813f88/uCrop-2.2.8-native-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.Yalantis/uCrop/2.2.8-native/e2cb0d9c5805b142df15119bfe0339817ae12d35/uCrop-2.2.8-native-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

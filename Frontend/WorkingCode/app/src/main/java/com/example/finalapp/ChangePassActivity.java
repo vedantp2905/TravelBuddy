@@ -92,7 +92,7 @@ public class ChangePassActivity extends AppCompatActivity {
         }
 
         // Convert userId to proper format
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/newsletter-preference/" + 
+        String url = ApiConstants.BASE_URL + "/api/users/newsletter-preference/" + 
                     Long.parseLong(userId.trim());
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -130,7 +130,7 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     private void updateNewsletter(Boolean isSubscribed) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/newsletter-preference/" + 
+        String url = ApiConstants.BASE_URL + "/api/users/newsletter-preference/" + 
                     Long.parseLong(userId.trim());
 
         JSONObject requestBody = new JSONObject();
@@ -190,7 +190,7 @@ public class ChangePassActivity extends AppCompatActivity {
         }
 
         // First, check if the new password is same as current
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/check-password/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/check-password/" + userId;
         
         JSONObject checkBody = new JSONObject();
         try {
@@ -224,7 +224,7 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     private void proceedWithPasswordChange(String newPassword) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/update-password/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/update-password/" + userId;
 
         JSONObject requestBody = new JSONObject();
         try {
@@ -286,7 +286,7 @@ public class ChangePassActivity extends AppCompatActivity {
 
     private void changeEmail(String userId, String newEmail) {
         // First, check if the email already exists
-        String checkUrl = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId;
+        String checkUrl = ApiConstants.BASE_URL + "/api/users/" + userId;
 
         JsonObjectRequest checkRequest = new JsonObjectRequest(
             Request.Method.GET,
@@ -325,7 +325,7 @@ public class ChangePassActivity extends AppCompatActivity {
 
     private void checkEmailExists(String userId, String newEmail) {
         // Get current user's profile first to compare
-        String profileUrl = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId;
+        String profileUrl = ApiConstants.BASE_URL + "/api/users/" + userId;
 
         JsonObjectRequest profileRequest = new JsonObjectRequest(
             Request.Method.GET,
@@ -366,7 +366,7 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     private void proceedWithEmailChange(String userId, String newEmail) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/change-email/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/change-email/" + userId;
 
         JSONObject requestBody = new JSONObject();
         try {
@@ -422,7 +422,7 @@ public class ChangePassActivity extends AppCompatActivity {
 
     private void deleteAccount(String userId) {
         // First check if user is admin
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/" + userId;
         JsonObjectRequest roleCheckRequest = new JsonObjectRequest(
             Request.Method.GET,
             url,
@@ -464,7 +464,7 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     private void performDeleteAccount(String userId) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/delete/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/delete/" + userId;
 
         CustomJsonRequest request = new CustomJsonRequest(
             Request.Method.DELETE, 

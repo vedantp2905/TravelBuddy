@@ -266,7 +266,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Polls"
+                            android:text="Polls- Update coming soon"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -369,7 +369,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Local Explorer"
+                            android:text="City Explorer"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

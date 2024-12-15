@@ -136,7 +136,7 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void fetchTasks() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/tasks/user/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/tasks/user/" + userId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -201,7 +201,7 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void updateTaskStatus(Task task, boolean isCompleted) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/tasks/" + task.getId();
+        String url = ApiConstants.BASE_URL + "/api/tasks/" + task.getId();
 
         try {
             // Create request body with updated completion status
@@ -276,7 +276,7 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void deleteTask(Task task) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/tasks/" + task.getId();
+        String url = ApiConstants.BASE_URL + "/api/tasks/" + task.getId();
 
         StringRequest request = new StringRequest(Request.Method.DELETE, url,
                 response -> {
@@ -403,7 +403,7 @@ public class TaskListActivity extends AppCompatActivity {
             }
 
             // Send POST request to create task
-            String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/tasks";
+            String url = ApiConstants.BASE_URL + "/api/tasks";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
                     response -> {
                         Log.d("TaskList", "Task created successfully: " + response.toString());
@@ -532,7 +532,7 @@ public class TaskListActivity extends AppCompatActivity {
             }
 
             // Send PUT request to update task
-            String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/tasks/" + task.getId();
+            String url = ApiConstants.BASE_URL + "/api/tasks/" + task.getId();
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, requestBody,
                     response -> {
                         dialog.dismiss();

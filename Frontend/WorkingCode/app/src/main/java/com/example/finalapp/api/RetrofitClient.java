@@ -2,9 +2,10 @@ package com.example.finalapp.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.finalapp.ApiConstants;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "http://coms-3090-010.class.las.iastate.edu:8080//";
+    private static final String BASE_URL = ApiConstants.BASE_URL + "/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getInstance() {

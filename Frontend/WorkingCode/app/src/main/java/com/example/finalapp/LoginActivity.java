@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
     private Button btnLogin, btnForgotPassword;
     private ProgressDialog loadingDialog;
-    private static final String LOGIN_URL = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/login";
+    private static final String LOGIN_URL = ApiConstants.BASE_URL + "/api/users/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkUserProfile(int userId) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/profile/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/profile/" + userId;
         
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

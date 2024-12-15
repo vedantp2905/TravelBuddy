@@ -44,7 +44,7 @@ public class RewardsActivity extends AppCompatActivity {
     }
 
     private void fetchRewardsBalance() {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/reward/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/reward/" + userId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

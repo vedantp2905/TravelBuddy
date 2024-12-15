@@ -162,7 +162,7 @@ public class CreateItineraryActivity extends AppCompatActivity {
             requestBody.put("number_of_children", Integer.parseInt(numberOfChildrenInput.getText().toString()));
             requestBody.put("user_location", userLocationInput.getText().toString().trim());
 
-            String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/itineraries/generate";
+            String url = ApiConstants.BASE_URL + "/api/itineraries/generate";
 
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST,

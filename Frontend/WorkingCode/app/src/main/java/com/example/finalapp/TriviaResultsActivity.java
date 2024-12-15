@@ -56,7 +56,7 @@ public class TriviaResultsActivity extends AppCompatActivity {
     }
 
     private void fetchAndDisplayUsername(long userId, int score, int rank) {
-        String url = "http://coms-3090-010.class.las.iastate.edu:8080/api/users/" + userId;
+        String url = ApiConstants.BASE_URL + "/api/users/" + userId;
         
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
             response -> {
